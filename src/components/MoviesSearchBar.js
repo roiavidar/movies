@@ -3,7 +3,6 @@ import React, {createRef} from "react";
 import { Search, Input, Button } from "semantic-ui-react";
 
 export default class MoviesSearchBar extends React.Component {
-  static NO_YEAR = -1;
   static DEBOUNCE_TIMEOUT = 1000;
   static MAX_LENGTH_FOR_PLOT = 50;
   static SEARCH_BY_NAME_TEXT = "Search by movie name";
@@ -15,7 +14,7 @@ export default class MoviesSearchBar extends React.Component {
     this.state = {
       maxYear: new Date().getFullYear(),
       name: '',
-      year: MoviesSearchBar.NO_YEAR
+      year: undefined
     };
 
     this.searchNameRef = createRef();
@@ -31,10 +30,8 @@ export default class MoviesSearchBar extends React.Component {
   };
 
   handleSearchChange() {
-      if (this.state.year === MoviesSearchBar.NO_YEAR && this.state.name !== "") {
-        this.props.searchMovie(this.state.name);      
-      } else if (this.state.name !== "") {
-        this.props.searchMovie(this.state.name, this.state.year);    
+      if (this.state.name !== "") {
+        this.props.searchMovie(this.state.name, this.state.year);      
       }
   };
 
