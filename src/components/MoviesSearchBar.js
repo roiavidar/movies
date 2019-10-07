@@ -5,6 +5,10 @@ import { Search, Input, Button } from "semantic-ui-react";
 export default class MoviesSearchBar extends React.Component {
   static NO_YEAR = -1;
   static DEBOUNCE_TIMEOUT = 1000;
+  static MAX_LENGTH_FOR_PLOT = 50;
+  static SEARCH_BY_NAME_TEXT = "Search by movie name";
+  static YEAR_TEXT = "Year";
+  static BUTTON_SEARCH_TEXT = "Search";
 
   constructor(props) {
     super(props);
@@ -58,7 +62,7 @@ export default class MoviesSearchBar extends React.Component {
     if(movies) {
       results = movies.reduce((movies, movie) => {
         if (movie.title) {
-          const plot = movie.plot && movie.plot.substring(0,50) + "...";
+          const plot = movie.plot && movie.plot.substring(0, MoviesSearchBar.MAX_LENGTH_FOR_PLOT) + "...";
           movies.push({
             "title": movie.title,
             "description": plot,
@@ -78,19 +82,19 @@ export default class MoviesSearchBar extends React.Component {
           onResultSelect={this.handleResultSelect}
           onSearchChange={_.debounce(this.handleNameChange, MoviesSearchBar.DEBOUNCE_TIMEOUT)}
           results={results}
-          placeholder="Search by movie name"
+          placeholder={MoviesSearchBar.SEARCH_BY_NAME_TEXT}
           ref={this.searchNameRef}
         />
         <div className={"d-flex"}>
           <Input
             type="number"
             min="1900"
-            placeholder="Year"
+            placeholder={MoviesSearchBar.YEAR_TEXT}
             max={this.state.maxYear}
             maxLength="4"
             onChange={e => this.handleYearChange(e.target.value)} />
           <Button
-            content="Search"
+            content={MoviesSearchBar.BUTTON_SEARCH_TEXT}
             onClick={this.setFocusToSearch}
             />
         </div>
