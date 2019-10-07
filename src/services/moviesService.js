@@ -26,7 +26,6 @@ class MoviesService {
               moviesService.promises[index] = undefined;
               moviesService.promises[index + 1] && moviesService.promises[index + 1].tryToResolve();
               if (index === moviesService.promises.length - 1) {
-                console.log(moviesService.promises);
                 moviesService.promises = [];
               }
             }
