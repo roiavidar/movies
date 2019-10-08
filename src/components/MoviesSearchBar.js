@@ -30,7 +30,7 @@ export default class MoviesSearchBar extends React.Component {
   };
 
   handleSearchChange() {
-      if (this.state.name !== "") {
+      if (this.state.name) {
         this.props.searchMovie(this.state.name, this.state.year);      
       }
   };
@@ -48,7 +48,7 @@ export default class MoviesSearchBar extends React.Component {
   };
 
   setFocusToSearch() {
-    if (this.state.name !== "") {
+    if (this.state.name) {
       this.searchNameRef.current.open();
     }
   }
