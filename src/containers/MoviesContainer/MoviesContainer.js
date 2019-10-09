@@ -1,11 +1,12 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import MovieCard from "../components/MovieCard";
-import MoviesSearchBar from "../components/MoviesSearchBar";
-import SelectableItemsList from "../components/SelectableItemsList";
-import { searchMovie, selectMovie } from "../actions/moviesActions";
-import { LOCALSTORAGE_MOVIES_STATE } from "../constants";
+import MovieCard from "../../components/MovieCard/MovieCard";
+import MoviesSearchBar from "../../components/MoviesSearchBar/MoviesSearchBar";
+import SelectableList from "../../components/SelectableList/SelectableList";
+import { searchMovie, selectMovie } from "../../actions/moviesActions";
+import { LOCALSTORAGE_MOVIES_STATE } from "../../constants";
+import "./MoviesContainer.scss";
 
 class MoviesContainer extends React.Component {
   static MAXIMUM_HISTORY_LENGTH = 3;
@@ -83,10 +84,10 @@ class MoviesContainer extends React.Component {
           loading={isLoading}
           customClass={"movie-container__movies-search-bar"}
         />
-        <SelectableItemsList
+        <SelectableList
           items={lastSearchMovies}
           select={this.handleMovieSelected}
-          customClass={"movie-container__selectable-items-list"}
+          customClass={"movie-container__selectable-list"}
         />
         <MovieCard
           movie={selectedMovie}

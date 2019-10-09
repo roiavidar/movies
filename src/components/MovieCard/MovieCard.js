@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
+import "./MovieCard.scss";
 
 export default class MovieCard extends React.Component {
   render() {
-    return (this.props.movie ? <Card className={"m-auto"}> 
+    return (this.props.movie ? <Card className={"movie-card"}> 
         <Image src={this.props.movie.image} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{this.props.movie.title}</Card.Header>
